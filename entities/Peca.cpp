@@ -70,3 +70,27 @@ void cadastrarPeca(ListaDePecas &lista)
     lista.pecas[lista.indiceDaUltima] = novaPeca;
     lista.indiceDaUltima++;
 }
+
+void consultarPeca(ListaDePecas &lista)
+{
+    int codigo;
+    cout << "Codigo da peca: ";
+    cin >> codigo;
+
+    int indice = buscarPeca(lista, codigo);
+    if (indice == -1)
+    {
+        cout << "PECA NAO ENCONTRADA!\n";
+        return;
+    }
+
+    Peca &p = lista.pecas[indice];
+
+    cout << "CODIGO: " << p.codigo << "\n";
+    cout << "DESCRICAO: " << p.descricao << "\n";
+    cout << "QUANTIDADE EM ESTOQUE: " << p.quant_estoque << "\n";
+    cout << "ESTOQUE MINIMO: " << p.estoque_minimo << "\n";
+    cout << "ESTOQUE MAXIMO: " << p.estoque_maximo << "\n";
+    cout << "PRECO UNITARIO: " << p.preco_unitario << "\n";
+    cout << "VALOR TOTAL EM ESTOQUE: " << (p.quant_estoque * p.preco_unitario) << "\n";
+}
