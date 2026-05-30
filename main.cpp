@@ -604,6 +604,152 @@ void cadastrarOrdemDeServico()
     indiceDaUltimaOrdemDeServico++;
 }
 
+void seed()
+{
+    cidades[indiceDaUltimaCidade++] = Cidade(1, "Sao Paulo", "SP");
+    cidades[indiceDaUltimaCidade++] = Cidade(2, "Campinas", "SP");
+    cidades[indiceDaUltimaCidade++] = Cidade(3, "Rio de Janeiro", "RJ");
+    cidades[indiceDaUltimaCidade++] = Cidade(4, "Belo Horizonte", "MG");
+    cidades[indiceDaUltimaCidade++] = Cidade(5, "Curitiba", "PR");
+
+    servicos[indiceDoUltimoServico++] = Servico(1, "Troca de Oleo", 80.0f);
+    servicos[indiceDoUltimoServico++] = Servico(2, "Alinhamento", 120.0f);
+    servicos[indiceDoUltimoServico++] = Servico(3, "Balanceamento", 60.0f);
+    servicos[indiceDoUltimoServico++] = Servico(4, "Revisao Completa", 350.0f);
+    servicos[indiceDoUltimoServico++] = Servico(5, "Troca de Pastilhas de Freio", 150.0f);
+    servicos[indiceDoUltimoServico++] = Servico(6, "Troca de Pneus", 200.0f);
+
+    pecas[indiceDaUltimaPeca++] = Peca(1, "Oleo do Motor 5W30", 20, 5, 50, 35.90f);
+    pecas[indiceDaUltimaPeca++] = Peca(2, "Filtro de Oleo", 15, 3, 30, 25.50f);
+    pecas[indiceDaUltimaPeca++] = Peca(3, "Pastilha de Freio", 10, 2, 20, 89.90f);
+    pecas[indiceDaUltimaPeca++] = Peca(4, "Pneu 175/65 R14", 8, 4, 30, 299.90f);
+    pecas[indiceDaUltimaPeca++] = Peca(5, "Amortecedor", 6, 2, 15, 189.90f);
+    pecas[indiceDaUltimaPeca++] = Peca(6, "Correia Dentada", 5, 2, 10, 129.90f);
+
+    clientes[indiceDoUltimoCliente++] = Cliente(1, "Joao Silva", "Rua A, 123", "11999990001", 1);
+    clientes[indiceDoUltimoCliente++] = Cliente(2, "Maria Santos", "Rua B, 456", "11988880002", 2);
+    clientes[indiceDoUltimoCliente++] = Cliente(3, "Carlos Pereira", "Rua C, 789", "21977770003", 3);
+    clientes[indiceDoUltimoCliente++] = Cliente(4, "Ana Oliveira", "Rua D, 321", "31966660004", 4);
+    clientes[indiceDoUltimoCliente++] = Cliente(5, "Pedro Costa", "Rua E, 654", "41955550005", 5);
+
+    clientes[indiceDoUltimoCliente++] = Cliente(6, "Carla Souza", "Rua F, 987", "11944440006", 1);
+
+    veiculos[indiceDoUltimoVeiculo].placa = "ABC1D23";
+    veiculos[indiceDoUltimoVeiculo].modelo = "Gol";
+    veiculos[indiceDoUltimoVeiculo].marca = "Volkswagen";
+    veiculos[indiceDoUltimoVeiculo].ano = 2018;
+    veiculos[indiceDoUltimoVeiculo].codigo_cliente = 1;
+    indiceDoUltimoVeiculo++;
+
+    veiculos[indiceDoUltimoVeiculo].placa = "DEF2G34";
+    veiculos[indiceDoUltimoVeiculo].modelo = "Onix";
+    veiculos[indiceDoUltimoVeiculo].marca = "Chevrolet";
+    veiculos[indiceDoUltimoVeiculo].ano = 2020;
+    veiculos[indiceDoUltimoVeiculo].codigo_cliente = 2;
+    indiceDoUltimoVeiculo++;
+
+    veiculos[indiceDoUltimoVeiculo].placa = "GHI3H45";
+    veiculos[indiceDoUltimoVeiculo].modelo = "Civic";
+    veiculos[indiceDoUltimoVeiculo].marca = "Honda";
+    veiculos[indiceDoUltimoVeiculo].ano = 2019;
+    veiculos[indiceDoUltimoVeiculo].codigo_cliente = 3;
+    indiceDoUltimoVeiculo++;
+
+    veiculos[indiceDoUltimoVeiculo].placa = "JKL4J56";
+    veiculos[indiceDoUltimoVeiculo].modelo = "Corolla";
+    veiculos[indiceDoUltimoVeiculo].marca = "Toyota";
+    veiculos[indiceDoUltimoVeiculo].ano = 2021;
+    veiculos[indiceDoUltimoVeiculo].codigo_cliente = 4;
+    indiceDoUltimoVeiculo++;
+
+    veiculos[indiceDoUltimoVeiculo].placa = "MNO5K67";
+    veiculos[indiceDoUltimoVeiculo].modelo = "Fox";
+    veiculos[indiceDoUltimoVeiculo].marca = "Volkswagen";
+    veiculos[indiceDoUltimoVeiculo].ano = 2017;
+    veiculos[indiceDoUltimoVeiculo].codigo_cliente = 5;
+    indiceDoUltimoVeiculo++;
+
+    mecanicos[indiceDoUltimoMecanico].codigo = 1;
+    mecanicos[indiceDoUltimoMecanico].nome = "Roberto Lima";
+    mecanicos[indiceDoUltimoMecanico].especialidade = "Motor";
+    mecanicos[indiceDoUltimoMecanico].telefone = "11911110001";
+    indiceDoUltimoMecanico++;
+
+    mecanicos[indiceDoUltimoMecanico].codigo = 2;
+    mecanicos[indiceDoUltimoMecanico].nome = "Fernando Santos";
+    mecanicos[indiceDoUltimoMecanico].especialidade = "Suspensao";
+    mecanicos[indiceDoUltimoMecanico].telefone = "11922220002";
+    indiceDoUltimoMecanico++;
+
+    mecanicos[indiceDoUltimoMecanico].codigo = 3;
+    mecanicos[indiceDoUltimoMecanico].nome = "Paulo Oliveira";
+    mecanicos[indiceDoUltimoMecanico].especialidade = "Freios";
+    mecanicos[indiceDoUltimoMecanico].telefone = "11933330003";
+    indiceDoUltimoMecanico++;
+
+    mecanicos[indiceDoUltimoMecanico].codigo = 4;
+    mecanicos[indiceDoUltimoMecanico].nome = "Marcos Costa";
+    mecanicos[indiceDoUltimoMecanico].especialidade = "Eletrica";
+    mecanicos[indiceDoUltimoMecanico].telefone = "11944440004";
+    indiceDoUltimoMecanico++;
+
+    mecanicos[indiceDoUltimoMecanico].codigo = 5;
+    mecanicos[indiceDoUltimoMecanico].nome = "Ricardo Almeida";
+    mecanicos[indiceDoUltimoMecanico].especialidade = "Funilaria";
+    mecanicos[indiceDoUltimoMecanico].telefone = "11955550005";
+    indiceDoUltimoMecanico++;
+
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo = 1;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].placa_veiculo = "ABC1D23";
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_mecanico = 1;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].data = "15/05/2026";
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_servico = 1;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_peca = 1;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].quantidade_peca = 2;
+    // pecas[0].quant_estoque -= 2;
+    // indiceDaUltimaOrdemDeServico++;
+
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo = 2;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].placa_veiculo = "DEF2G34";
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_mecanico = 3;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].data = "16/05/2026";
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_servico = 5;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_peca = 3;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].quantidade_peca = 1;
+    // pecas[2].quant_estoque -= 1;
+    // indiceDaUltimaOrdemDeServico++;
+
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo = 3;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].placa_veiculo = "GHI3H45";
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_mecanico = 2;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].data = "17/05/2026";
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_servico = 2;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_peca = 5;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].quantidade_peca = 2;
+    // pecas[4].quant_estoque -= 2;
+    // indiceDaUltimaOrdemDeServico++;
+
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo = 4;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].placa_veiculo = "JKL4J56";
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_mecanico = 4;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].data = "18/05/2026";
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_servico = 3;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_peca = 4;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].quantidade_peca = 4;
+    // pecas[3].quant_estoque -= 4;
+    // indiceDaUltimaOrdemDeServico++;
+
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo = 5;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].placa_veiculo = "MNO5K67";
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_mecanico = 5;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].data = "19/05/2026";
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_servico = 4;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].codigo_peca = 6;
+    // ordensDeServico[indiceDaUltimaOrdemDeServico].quantidade_peca = 1;
+    // pecas[5].quant_estoque -= 1;
+    // indiceDaUltimaOrdemDeServico++;
+}
+
 void exibirMenu()
 {
     cout << "\n========================================\n";
@@ -623,6 +769,8 @@ void exibirMenu()
 
 int main()
 {
+    seed();
+
     int opcao;
     do
     {
