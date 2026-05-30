@@ -295,28 +295,73 @@ int buscarMecanico(int codigo)
 
 int buscarServico(int codigo)
 {
-    for (int i = 0; i < indiceDoUltimoServico; i++) {
-        if (servicos[i].codigo == codigo)
-            return i;
+    int esquerda = 0;
+    int direita = indiceDoUltimoServico;
+
+    while (esquerda <= direita)
+    {
+        int meio = esquerda + (direita - esquerda) / 2;
+
+        if (servicos[meio].codigo == codigo)
+            return meio;
+
+        if (servicos[meio].codigo < codigo)
+        {
+            esquerda = meio + 1;
+            continue;
+        }
+
+        direita = meio - 1;
     }
+
     return -1;
 }
 
 int buscarPeca(int codigo)
 {
-    for (int i = 0; i < indiceDaUltimaPeca; i++) {
-        if (pecas[i].codigo == codigo)
-            return i;
+    int esquerda = 0;
+    int direita = indiceDaUltimaPeca;
+
+    while (esquerda <= direita)
+    {
+        int meio = esquerda + (direita - esquerda) / 2;
+
+        if (pecas[meio].codigo == codigo)
+            return meio;
+
+        if (pecas[meio].codigo < codigo)
+        {
+            esquerda = meio + 1;
+            continue;
+        }
+
+        direita = meio - 1;
     }
+
     return -1;
 }
 
 int buscarOrdemServico(int codigo)
 {
-    for (int i = 0; i < indiceDaUltimaOrdemDeServico; i++) {
-        if (ordensDeServico[i].codigo == codigo)
-            return i;
+    int esquerda = 0;
+    int direita = indiceDaUltimaOrdemDeServico;
+
+    while (esquerda <= direita)
+    {
+        int meio = esquerda + (direita - esquerda) / 2;
+
+        if (ordensDeServico[meio].codigo == codigo)
+            return meio;
+
+        if (ordensDeServico[meio].codigo < codigo)
+        {
+            esquerda = meio + 1;
+            continue;
+        }
+
+        direita = meio - 1;
     }
+
     return -1;
 }
 
