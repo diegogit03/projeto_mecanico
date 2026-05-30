@@ -293,6 +293,33 @@ int buscarMecanico(int codigo)
     return -1;
 }
 
+int buscarServico(int codigo)
+{
+    for (int i = 0; i < indiceDoUltimoServico; i++) {
+        if (servicos[i].codigo == codigo)
+            return i;
+    }
+    return -1;
+}
+
+int buscarPeca(int codigo)
+{
+    for (int i = 0; i < indiceDaUltimaPeca; i++) {
+        if (pecas[i].codigo == codigo)
+            return i;
+    }
+    return -1;
+}
+
+int buscarOrdemServico(int codigo)
+{
+    for (int i = 0; i < indiceDaUltimaOrdemDeServico; i++) {
+        if (ordensDeServico[i].codigo == codigo)
+            return i;
+    }
+    return -1;
+}
+
 void cadastrarCidade()
 {
     Cidade novaCidade;
@@ -445,49 +472,90 @@ void cadastrarOrdemDeServico()
     cin >> novaOrdemDeServico.codigo;
     
     int indiceDaOrdemDeServico = buscarOrdemServico(novaOrdemDeServico.codigo);
-    
     if (indiceDaOrdemDeServico != -1) {
-    	cout << "C�DIGO JA EXISTE!";
-    	return;
-	}
-
+        cout << "CODIGO JA EXISTE!";
+        return;
+    }
+    
     cin.ignore();
-
-    cout << "Placa: ";
+    
+    cout << "Placa do veiculo: ";
     getline(cin, novaOrdemDeServico.placa_veiculo);
     
     int indiceDoVeiculo = buscarVeiculo(novaOrdemDeServico.placa_veiculo);
-    
     if (indiceDoVeiculo == -1) {
-    	cout << "PLACA NAO EXISTE!";
-    	return;
-	}
-	
-	struct Veiculo veiculoAssociado = veiculos[indiceDoVeiculo];
-	
-	int indiceDoCliente = buscarCliente(veiculoAssociado.codigo_cliente);
-	Cliente clienteAssociadoAoVeiculo = clientes[indiceDoCliente];
-	
-	cout << "VEICULO ASSOCIADO: \n";
-	cout << "MODELO: " << veiculoAssociado.modelo <<"\n";
-	cout << "CLIENTE: " << veiculoAssociado.modelo <<"\n";
+        cout << "PLACA NAO ENCONTRADA!";
+        return;
+    }
     
-    cout << "C�digo mecanico: ";
-    getline(cin, novaOrdemDeServico.codigo_mecanico);
+    Veiculo veiculoAssociado = veiculos[indiceDoVeiculo];
+    int indiceDoCliente = buscarCliente(veiculoAssociado.codigo_cliente);
+    if (indiceDoCliente == -1) {
+        cout << "CLIENTE NAO ENCONTRADO!";
+        return;
+    }
+    
+    Cliente clienteAssociado = clientes[indiceDoCliente];
+    
+    cout << "MODELO: " << veiculoAssociado.modelo << "\n";
+    cout << "CLIENTE: " << clienteAssociado.nome << "\n";
+    
+    cout << "Codigo do mecanico: ";
+    cin >> novaOrdemDeServico.codigo_mecanico;
     
     int indiceDoMecanico = buscarMecanico(novaOrdemDeServico.codigo_mecanico);
-    
     if (indiceDoMecanico == -1) {
-    	cout << "C�DIGO DO MECANICO N�O EXISTE!";
-    	return;
-	}
-	
-	struct Mecanico mecanicoAssociado = mecanicos[indiceDoMecanico];
-	
-	cout << "MECANICO ASSOCIADO: \n";
-	cout << "NOME: " << mecanicoAssociado.nome <<"\n";
-
-    mecanicos[indiceDaUltimaOrdemDeServico] = novoMecanico;
+        cout << "MECANICO NAO ENCONTRADO!";
+        return;
+    }
+    
+    Mecanico mecanicoAssociado = mecanicos[indiceDoMecanico];
+    
+    cout << "NOME: " << mecanicoAssociado.nome << "\n";
+    cout << "ESPECIALIDADE: " << mecanicoAssociado.especialidade << "\n";
+    
+    cin.ignore();
+    cout << "Data: ";
+    getline(cin, novaOrdemDeServico.data);
+    
+    cout << "Codigo do servico: ";
+    cin >> novaOrdemDeServico.codigo_servico;
+    
+    int indiceDoServico = buscarServico(novaOrdemDeServico.codigo_servico);
+    if (indiceDoServico == -1) {
+        cout << "SERVICO NAO ENCONTRADO!";
+        return;
+    }
+    
+    Servico servicoAssociado = servicos[indiceDoServico];
+    
+    cout << "DESCRICAO: " << servicoAssociado.descricao << "\n";
+    cout << "VALOR MAO DE OBRA: " << servicoAssociado.valor_mao_de_obra << "\n";
+    
+    cout << "Codigo da peca: ";
+    cin >> novaOrdemDeServico.codigo_peca;
+    
+    int indiceDaPeca = buscarPeca(novaOrdemDeServico.codigo_peca);
+    if (indiceDaPeca == -1) {
+        cout << "PECA NAO ENCONTRADA!";
+        return;
+    }
+    
+    Peca pecaAssociada = pecas[indiceDaPeca];
+    
+    cout << "DESCRICAO: " << pecaAssociada.descricao << "\n";
+    
+    cout << "Quantidade de pecas: ";
+    cin >> novaOrdemDeServico.quantidade_peca;
+    
+    if (novaOrdemDeServico.quantidade_peca > pecaAssociada.quant_estoque) {
+        cout << "ESTOQUE INSUFICIENTE! ESTOQUE ATUAL: " << pecaAssociada.quant_estoque;
+        return;
+    }
+    
+    pecas[indiceDaPeca].quant_estoque -= novaOrdemDeServico.quantidade_peca;
+    
+    ordensDeServico[indiceDaUltimaOrdemDeServico] = novaOrdemDeServico;
     indiceDaUltimaOrdemDeServico++;
 }
 
@@ -535,6 +603,9 @@ int main()
         	break;
         case 6:
         	cadastrarMecanico();
+        	break;
+        case 7:
+        	cadastrarOrdemDeServico();
         	break;
         case 0:
             cout << "Saindo...\n";
