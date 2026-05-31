@@ -94,3 +94,39 @@ void consultarPeca(ListaDePecas &lista)
     cout << "PRECO UNITARIO: " << p.preco_unitario << "\n";
     cout << "VALOR TOTAL EM ESTOQUE: " << (p.quant_estoque * p.preco_unitario) << "\n";
 }
+
+void relatorioPecasAbaixoDoEstoqueMinimo(ListaDePecas &lista)
+{
+    float valorTotalCompra = 0;
+    int encontrou = 0;
+
+    for (int i = 0; i < lista.indiceDaUltima; i++)
+    {
+        Peca &p = lista.pecas[i];
+
+        if (p.quant_estoque >= p.estoque_minimo)
+            continue;
+
+        int qtdComprar = p.estoque_maximo - p.quant_estoque;
+        float valorCompra = qtdComprar * p.preco_unitario;
+
+        cout << "CODIGO: " << p.codigo << "\n";
+        cout << "DESCRICAO: " << p.descricao << "\n";
+        cout << "QUANTIDADE EM ESTOQUE: " << p.quant_estoque << "\n";
+        cout << "ESTOQUE MAXIMO: " << p.estoque_maximo << "\n";
+        cout << "QUANTIDADE A COMPRAR: " << qtdComprar << "\n";
+        cout << "VALOR DA COMPRA: " << valorCompra << "\n";
+        cout << "---\n";
+
+        valorTotalCompra += valorCompra;
+        encontrou = 1;
+    }
+
+    if (!encontrou)
+    {
+        cout << "NENHUMA PECA ABAIXO DO ESTOQUE MINIMO.\n";
+        return;
+    }
+
+    cout << "VALOR TOTAL GASTO NA COMPRA: " << valorTotalCompra << "\n";
+}

@@ -26,6 +26,7 @@ void exibirMenu()
     cout << " 6. Cadastrar mecanico\n";
     cout << " 7. Cadastrar ordem de servico\n";
     cout << " 8. Consultar peca\n";
+    cout << " 9. Relatorio de pecas abaixo do estoque minimo\n";
     cout << " 0. Sair\n";
     cout << "----------------------------------------\n";
     cout << "Opcao: ";
@@ -81,6 +82,9 @@ int main()
             break;
         case 8:
             consultarPeca(dados.pecas);
+            break;
+        case 9:
+            relatorioPecasAbaixoDoEstoqueMinimo(dados.pecas);
             break;
         case 0:
             cout << "Saindo...\n";
