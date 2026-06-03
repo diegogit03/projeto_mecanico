@@ -9,7 +9,6 @@
 #include "entities/Mecanico.cpp"
 #include "entities/OrdemServico.cpp"
 #include "seed.cpp"
-#include "persistencia.cpp"
 
 using namespace std;
 
@@ -34,7 +33,14 @@ void exibirMenu()
 
 int main()
 {
-    DadosPersistidos dados = lerPersistencia();
+    ListaDeCidades cidades = {};
+    ListaDeServicos servicos = {};
+    ListaDePecas pecas = {};
+    ListaDeClientes clientes = {};
+    ListaDeVeiculos veiculos = {};
+    ListaDeMecanicos mecanicos = {};
+    ListaDeOrdemServicos ordens = {};
+    seed(cidades, servicos, pecas, clientes, veiculos, mecanicos, ordens);
 
     int opcao;
     do
@@ -45,46 +51,38 @@ int main()
         switch (opcao)
         {
         case 1:
-            cadastrarCidade(dados.cidades);
-            persistirCidades(dados.cidades);
+            cadastrarCidade(cidades);
             break;
         case 2:
-            cadastrarServico(dados.servicos);
-            persistirServicos(dados.servicos);
+            cadastrarServico(servicos);
             break;
         case 3:
-            cadastrarPeca(dados.pecas);
-            persistirPecas(dados.pecas);
+            cadastrarPeca(pecas);
             break;
         case 4:
-            cadastrarCliente(dados.clientes, dados.cidades);
-            persistirClientes(dados.clientes);
+            cadastrarCliente(clientes, cidades);
             break;
         case 5:
-            cadastrarVeiculo(dados.veiculos, dados.clientes);
-            persistirVeiculos(dados.veiculos);
+            cadastrarVeiculo(veiculos, clientes);
             break;
         case 6:
-            cadastrarMecanico(dados.mecanicos);
-            persistirMecanicos(dados.mecanicos);
+            cadastrarMecanico(mecanicos);
             break;
         case 7:
             cadastrarOrdemDeServico(
-                dados.ordens,
-                dados.veiculos,
-                dados.clientes,
-                dados.mecanicos,
-                dados.servicos,
-                dados.pecas
+                ordens,
+                veiculos,
+                clientes,
+                mecanicos,
+                servicos,
+                pecas
             );
-            persistirOrdemServicos(dados.ordens);
-            persistirPecas(dados.pecas);
             break;
         case 8:
-            consultarPeca(dados.pecas);
+            consultarPeca(pecas);
             break;
         case 9:
-            relatorioPecasAbaixoDoEstoqueMinimo(dados.pecas);
+            relatorioPecasAbaixoDoEstoqueMinimo(pecas);
             break;
         case 0:
             cout << "Saindo...\n";
